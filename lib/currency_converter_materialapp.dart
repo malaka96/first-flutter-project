@@ -13,6 +13,12 @@ class _CurrencyConverterMaterialPage
     extends State<CurrencyConverterMaterialPage> {
   double result = 0;
   final TextEditingController textEditingController = TextEditingController();
+
+  void convert() {
+    result = double.parse(textEditingController.text) * 290;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     final border = OutlineInputBorder(
@@ -36,7 +42,7 @@ class _CurrencyConverterMaterialPage
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              result.toString(),
+              'LKR : ${result != 0 ? result.toStringAsFixed(2) : result.toStringAsFixed(0)}',
               style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
             ),
             Padding(
@@ -60,11 +66,7 @@ class _CurrencyConverterMaterialPage
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextButton(
-                onPressed: () {
-                  setState(() {
-                    result = double.parse(textEditingController.text) * 290;
-                  });
-                },
+                onPressed: convert,
                 style: TextButton.styleFrom(
                   backgroundColor: Colors.black,
                   foregroundColor: Colors.white,
